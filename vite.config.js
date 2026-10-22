@@ -1,11 +1,15 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
-import vue from '@vitejs/plugin-vue';  
+import vue from '@vitejs/plugin-vue';
+import path from 'path';
 
 export default defineConfig({
     plugins: [
-        laravel(['resources/js/app.js']),
+        laravel({
+            input: ['resources/css/app.css', 'resources/js/app.js'],
+            refresh: true,
+        }),
         vue({
             template: {
                 transformAssetUrls: {
@@ -16,8 +20,21 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'resources/js'),
+            '@resources': path.resolve(__dirname, 'resources'),
+        },
+    },
     server: {
-        host: true,
+        host: '0.0.0.0',
         port: 5173,
-    }
+        origin: 'http://localhost:5173',
+        hmr: {
+            host: 'localhost',
+        },
+        watch: {
+            usePolling: true,
+        },
+    },
 });

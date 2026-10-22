@@ -4,18 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Layout com Vue e Tailwind</title>
+        <title>Brincando com Components Vue e Tailwind</title>
         <script>
             window.appData = {
-                theme: @json($theme)
+                theme: @json($theme ?? null)
             }
         </script>
 
-        @vite(['resources/js/app.js', 'resources/css/app.css'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="flex justify-center items-center p-20">
-        <div id="app">
-            <login-form-component></login-form-component>
-        </div>
+    <body class="antialiased bg-gray-50 m-0 p-0">
+        <div id="app"></div>
     </body>
 </html>
