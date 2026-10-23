@@ -7,7 +7,7 @@ import path from 'path';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: ['resources/js/app.js'],
             refresh: true,
         }),
         vue({
@@ -28,8 +28,10 @@ export default defineConfig({
     },
     server: {
         host: '0.0.0.0',
-        port: 5173,
-        origin: 'http://localhost:5173',
+        port: 5174,
+        strictPort: true,
+        origin: 'http://localhost:5174',
+        cors: true,
         hmr: {
             host: 'localhost',
         },
